@@ -1,47 +1,59 @@
-
 import { Menu } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import { NavLink, useLocation } from 'react-router-dom';
+import { HomeOutlined, FundOutlined, BarChartOutlined, LineChartOutlined } from '@ant-design/icons';
+import logo from "../../assets/images/logo.png";
 
-const { SubMenu } = Menu;
+function Nav() {
+  const location = useLocation();
+  const current = location.pathname.toLowerCase();
 
-class App extends React.Component {
-  state = {
-    current: 'mail',
-  };
-
-  handleClick = e => {
-    console.log('click ', e);
-    this.setState({ current: e.key });
-  };
-
-  render() {
-    const { current } = this.state;
-    return (
-      <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-        <Menu.Item key="mail" icon={<MailOutlined />}>
-          Navigation One
-        </Menu.Item>
-        <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-          Navigation Two
-        </Menu.Item>
-        <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Navigation Three - Submenu">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key="alipay">
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Navigation Four - Link
-          </a>
-        </Menu.Item>
-      </Menu>
-    );
-  }
+  return (
+    <div style={{ background: '#fff', boxShadow: '0 2px 8px #f0f1f2' }}>
+      <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto' }}>
+        <Menu mode="horizontal" selectedKeys={[current]} theme="light">
+          <Menu.Item>
+            <NavLink to="/">
+              <div className="brand">
+                <img 
+                  src={logo}
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: 'auto',              
+                    maxWidth: '50px',            
+                    display: 'block',
+                    margin: '0 auto',
+                    objectFit: 'contain'
+                  }} 
+                />
+              <span>Port AI</span>
+            </div>
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/macro">
+              <span style={{ marginLeft: 8 }}>Product</span>
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            {/* <NavLink to="/sign-in"> */}
+              <span className="label">Contact</span>
+            {/* </NavLink> */}
+          </Menu.Item>
+          <Menu.Item>
+            {/* <NavLink to="/sign-in"> */}
+              <span className="label">Login</span>
+            {/* </NavLink> */}
+          </Menu.Item>
+          <Menu.Item key="8">
+            {/* <NavLink to="/sign-up"> */}
+              <span className="label">Get Started</span>
+            {/* </NavLink> */}
+            </Menu.Item>
+        </Menu>
+      </div>
+    </div>
+  );
 }
 
-ReactDOM.render(<App />, mountNode);
+export default Nav;

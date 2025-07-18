@@ -9,19 +9,9 @@ const { Title } = Typography;
 
 const topics = [
   {
-    title: "Macro",
+    title: "View Feature",
     image: macroBackground,
     link: "/macro",
-  },
-  {
-    title: "Fundamental",
-    image: "https://source.unsplash.com/1600x900/?finance",
-    link: "/fundamental",
-  },
-  {
-    title: "Technical",
-    image: "https://source.unsplash.com/1600x900/?stock",
-    link: "/technical",
   },
 ];
 

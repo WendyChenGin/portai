@@ -13,7 +13,7 @@
 // import { useState } from "react";
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+// import logo from "../../assets/images/logo.png";
 
 function Sidenav({ color }) {
   const { pathname } = useLocation();
@@ -159,10 +159,10 @@ function Sidenav({ color }) {
 
   return (
     <>
-      <div className="brand">
+      {/* <div className="brand">
         <img src={logo} alt="" />
         <span>Port AI</span>
-      </div>
+      </div> */}
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">

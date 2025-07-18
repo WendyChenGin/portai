@@ -9,6 +9,7 @@
   =========================================================
   * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+/* Editor: Siying Chen */
 
 import { useState, useEffect } from "react";
 
@@ -25,6 +26,7 @@ import {
   Drawer,
   Typography,
   Switch,
+  Menu
 } from "antd";
 
 import {
@@ -34,9 +36,9 @@ import {
   FacebookFilled,
 } from "@ant-design/icons";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import avtar from "../../assets/images/team-2.jpg";
+import logo from "../../assets/images/logo.png"; 
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -268,13 +270,16 @@ function Header({
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
 
+  const location = useLocation();
+  const current = location.pathname;
+
   return (
     <>
       {/* <div className="setting-drwer" onClick={showDrawer}>
         {setting}
       </div> */}
       <Row gutter={[24, 0]}>
-        <Col span={24} md={6}>
+        {/* <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
               <NavLink to="/">Pages</NavLink>
@@ -291,8 +296,8 @@ function Header({
               {subName.replace("/", "")}
             </span>
           </div>
-        </Col>
-        <Col span={24} md={18} className="header-control">
+        </Col> */}
+        <Col span={24} md={24} className="header-control">
           {/* <Badge size="small" count={4}>
             <Dropdown overlay={menu} trigger={["click"]}>
               <a
@@ -304,9 +309,9 @@ function Header({
               </a>
             </Dropdown>
           </Badge> */}
-          <Button type="link" onClick={showDrawer}>
+          {/* <Button type="link" onClick={showDrawer}>
             {logsetting}
-          </Button>
+          </Button> */}
           <Button
             type="link"
             className="sidebar-toggler"
@@ -314,7 +319,7 @@ function Header({
           >
             {toggler}
           </Button>
-          <Drawer
+          {/* <Drawer
             className="settings-drawer"
             mask={true}
             width={360}
@@ -331,7 +336,7 @@ function Header({
               </div>
 
               <div className="sidebar-color">
-                {/* <Title level={5}>Sidebar Color</Title>
+                <Title level={5}>Sidebar Color</Title>
                 <div className="theme-color mb-2">
                   <ButtonContainer>
                     <Button
@@ -366,7 +371,7 @@ function Header({
                       1
                     </Button>
                   </ButtonContainer>
-                </div> */}
+                </div>
 
                 <div className="sidebarnav-color mb-2">
                   <Title level={5}>Sidenav Type</Title>
@@ -396,7 +401,7 @@ function Header({
                   <Title level={5}>Navbar Fixed </Title>
                   <Switch onChange={(e) => handleFixedNavbar(e)} />
                 </div>
-                {/* <div className="ant-docment">
+                <div className="ant-docment">
                   <ButtonContainer>
                     <Button type="black" size="large">
                       FREE DOWNLOAD
@@ -417,10 +422,10 @@ function Header({
                     <Button type="black">{<TwitterOutlined />}TWEET</Button>
                     <Button type="black">{<FacebookFilled />}SHARE</Button>
                   </ButtonContainer>
-                </div> */}
+                </div>
               </div>
             </div>
-          </Drawer>
+          </Drawer> */}
           {/* <Link to="/sign-in" className="btn-sign-in">
             {profile}
             <span>Sign in</span>

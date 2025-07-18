@@ -14,26 +14,35 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Layout, Drawer, Affix } from "antd";
 import Sidenav from "./Sidenav";
+import Nav from "./Nav";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Outlet } from 'react-router-dom';
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
-function Main({ children }) {
+function Main() {
   const [visible, setVisible] = useState(false);
   const [placement, setPlacement] = useState("right");
   const [sidenavColor, setSidenavColor] = useState("#1890ff");
   const [sidenavType, setSidenavType] = useState("transparent");
+  // const [collapsed, setCollapsed] = useState(false); // side Nav control
   const [fixed, setFixed] = useState(false);
+
 
   const openDrawer = () => setVisible(!visible);
   const handleSidenavType = (type) => setSidenavType(type);
   const handleSidenavColor = (color) => setSidenavColor(color);
   const handleFixedNavbar = (type) => setFixed(type);
 
-  let { pathname } = useLocation();
-  pathname = pathname.replace("/", "");
+  const location = useLocation();
+  const pathname = location.pathname.replace("/", "");
+
+  useEffect(() => {
+  if (pathname === "") {
+    setVisible(false); // close side nav
+  }
+}, [pathname]);
 
   useEffect(() => {
     if (pathname === "rtl") {
@@ -42,6 +51,31 @@ function Main({ children }) {
       setPlacement("right");
     }
   }, [pathname]);
+
+  const renderHeader = (
+    // <AntHeader className={fixed ? "ant-header-fixed" : ""}>
+    <AntHeader>
+      <Header
+        onPress={openDrawer}
+        name={pathname}
+        subName={pathname}
+        handleSidenavColor={handleSidenavColor}
+        handleSidenavType={handleSidenavType}
+        handleFixedNavbar={handleFixedNavbar}
+      />
+    </AntHeader>
+  );
+
+  const renderMainLayout = (
+    <Layout>
+      <Nav />
+      {/* {fixed ? <Affix>{renderHeader}</Affix> : renderHeader} */}
+      <Content className="content-ant">
+        <Outlet />
+      </Content>
+      <Footer />
+    </Layout>
+  );
 
   return (
     <Layout
@@ -79,54 +113,30 @@ function Main({ children }) {
           </Sider>
         </Layout>
       </Drawer>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-        trigger={null}
-        width={250}
-        theme="light"
-        className={`sider-primary ant-layout-sider-primary ${
-          sidenavType === "#fff" ? "active-route" : ""
-        }`}
-        style={{ background: sidenavType }}
-      >
-        <Sidenav color={sidenavColor} />
-      </Sider>
-      <Layout>
-        {fixed ? (
-          <Affix>
-            <AntHeader className={`${fixed ? "ant-header-fixed" : ""}`}>
-              <Header
-                onPress={openDrawer}
-                name={pathname}
-                subName={pathname}
-                handleSidenavColor={handleSidenavColor}
-                handleSidenavType={handleSidenavType}
-                handleFixedNavbar={handleFixedNavbar}
-              />
-            </AntHeader>
-          </Affix>
-        ) : (
-          <AntHeader className={`${fixed ? "ant-header-fixed" : ""}`}>
-            <Header
-              onPress={openDrawer}
-              name={pathname}
-              subName={pathname}
-              handleSidenavColor={handleSidenavColor}
-              handleSidenavType={handleSidenavType}
-              handleFixedNavbar={handleFixedNavbar}
-            />
-          </AntHeader>
-        )}
-        {/* <Content className="content-ant">{children}</Content> */}
-        <Content className="content-ant">
-          <Outlet />
-        </Content>
-        <Footer />
-      </Layout>
+
+      {pathname !== "" ? (
+        <Layout hasSider>
+          <Sider
+            breakpoint="lg"
+            collapsedWidth="0"
+            onCollapse={(collapsed, type) => {
+              console.log(collapsed, type);
+            }}
+            trigger={null}
+            width={250}
+            theme="light"
+            className={`sider-primary ant-layout-sider-primary ${
+              sidenavType === "#fff" ? "active-route" : ""
+            }`}
+            style={{ background: sidenavType }}
+          >
+            <Sidenav color={sidenavColor} />
+          </Sider>
+          {renderMainLayout}
+        </Layout>
+      ) : (
+        renderMainLayout
+      )}
     </Layout>
   );
 }
