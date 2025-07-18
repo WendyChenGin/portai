@@ -2233,7 +2233,7 @@ button.ant-btn.bell strong {
 
 .layout-dashboard .ant-layout-content {
   padding: 0;
-  margin: 0 20px 0;
+  margin: 0;
 }
 .m-10,
 .mr-10,
@@ -3049,3 +3049,83 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
 }
 
 /* Addition */
+.homepage {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 0 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.homepage-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+.homepage-logo {
+    position: absolute;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+    top: 10px;
+}
+
+.homepage-logo img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.homepage-menu {
+  display: flex !important;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 24px;
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.homepage-menu .ant-menu-item,
+.homepage-menu a,
+.homepage-menu .ant-menu-title-content {
+  font-size: 18px;
+  /* font-weight: bold; */
+  color: #4a4a4a;
+}
+
+
+.homepage-link {
+  color: #4a4a4a;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.homepage-link:hover,
+.homepage-link.active {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.get-started-btn:hover {
+  opacity: 0.9;
+}
+
+.get-started-btn {
+  background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+  color: white;
+  padding: 0px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  transition: opacity 0.3s;
+}

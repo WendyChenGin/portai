@@ -1,6 +1,5 @@
 import { Menu } from 'antd';
 import { NavLink, useLocation } from 'react-router-dom';
-import { HomeOutlined, FundOutlined, BarChartOutlined, LineChartOutlined } from '@ant-design/icons';
 import logo from "../../assets/images/logo.png";
 
 function Nav() {
@@ -8,46 +7,39 @@ function Nav() {
   const current = location.pathname.toLowerCase();
 
   return (
-    <div style={{ background: '#fff', boxShadow: '0 2px 8px #f0f1f2' }}>
-      <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto' }}>
-        <Menu mode="horizontal" selectedKeys={[current]} theme="light">
-          <Menu.Item>
-            <NavLink to="/">
-              <div className="brand">
-                <img 
-                  src={logo}
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: 'auto',              
-                    maxWidth: '50px',            
-                    display: 'block',
-                    margin: '0 auto',
-                    objectFit: 'contain'
-                  }} 
-                />
+    <div className="homepage">
+      <div className="homepage-nav">
+        <div className="homepage-logo">
+          <NavLink to="/">
+            <div className="homepage-logo-content">
+              <img src={logo} alt="logo" />
               <span>Port AI</span>
             </div>
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item>
+          </NavLink>
+        </div>
+        <Menu
+          mode="horizontal"
+          selectedKeys={[current]}
+          className="homepage-menu"
+        >
+          <Menu.Item key="1">
             <NavLink to="/macro">
               <span style={{ marginLeft: 8 }}>Product</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="2">
             {/* <NavLink to="/sign-in"> */}
               <span className="label">Contact</span>
             {/* </NavLink> */}
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="3">
             {/* <NavLink to="/sign-in"> */}
               <span className="label">Login</span>
             {/* </NavLink> */}
           </Menu.Item>
-          <Menu.Item key="8">
+          <Menu.Item key="4">
             {/* <NavLink to="/sign-up"> */}
-              <span className="label">Get Started</span>
+              <span className="get-started-btn">Get Started</span>
             {/* </NavLink> */}
             </Menu.Item>
         </Menu>

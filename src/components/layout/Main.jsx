@@ -69,7 +69,7 @@ function Main() {
   const renderMainLayout = (
     <Layout>
       <Nav />
-      {/* {fixed ? <Affix>{renderHeader}</Affix> : renderHeader} */}
+      {fixed ? <Affix>{renderHeader}</Affix> : renderHeader}
       <Content className="content-ant">
         <Outlet />
       </Content>
